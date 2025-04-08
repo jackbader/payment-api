@@ -10,6 +10,7 @@ app.use(express.json());
 const certificate = Buffer.from(process.env.TELLER_CERTIFICATE, 'base64');
 const privateKey = Buffer.from(process.env.TELLER_PRIVATE_KEY, 'base64');
 
+
 // Create HTTPS agent with Teller credentials
 const httpsAgent = new https.Agent({
   cert: certificate,
@@ -33,7 +34,7 @@ app.get('/accounts', async (req, res, next) => {
     const response = await axios.get(`${process.env.TELLER_API_URL}/accounts`, {
       httpsAgent,
       auth: {
-        username: 'token_dvmd6a5wowk3oiqyolv5byly4u',
+        username: process.env.BANK_TOKEN,
         password: ''
       }
     });
@@ -54,7 +55,7 @@ app.get('/accounts/:accountId', async (req, res, next) => {
     const response = await axios.get(`${process.env.TELLER_API_URL}/accounts/${accountId}`, {
       httpsAgent,
       auth: {
-        username: 'token_dvmd6a5wowk3oiqyolv5byly4u',
+        username: process.env.BANK_TOKEN,
         password: ''
       }
     });
@@ -75,7 +76,7 @@ app.get('/accounts/:accountId/balances', async (req, res, next) => {
     const response = await axios.get(`${process.env.TELLER_API_URL}/accounts/${accountId}/balances`, {
       httpsAgent,
       auth: {
-        username: 'token_dvmd6a5wowk3oiqyolv5byly4u',
+        username: process.env.BANK_TOKEN,
         password: ''
       }
     });
@@ -96,7 +97,7 @@ app.get('/accounts/:accountId/transactions', async (req, res, next) => {
     const response = await axios.get(`${process.env.TELLER_API_URL}/accounts/${accountId}/transactions`, {
       httpsAgent,
       auth: {
-        username: 'token_dvmd6a5wowk3oiqyolv5byly4u',
+        username: process.env.BANK_TOKEN,
         password: ''
       }
     });
