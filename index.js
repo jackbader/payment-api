@@ -111,6 +111,11 @@ app.get('/accounts/:accountId/transactions', async (req, res, next) => {
   }
 });
 
+app.post('/new_transaction_webhook', async (req, res, next) => {
+  console.log(req.body);
+  res.json({ message: 'Transaction webhook received' });
+});
+
 // Start the server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
